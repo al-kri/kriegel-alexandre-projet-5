@@ -22,4 +22,14 @@ public class PersonServiceImpl implements PersonService {
     public List<Person> findByFirstNameAndLastName(String firstName, String lastName) {
         return personRepository.findByFirstNameAndLastName(firstName, lastName);
     }
+
+    @Override
+    public List<Person> save(Person personAdded) {
+        return personRepository.save(personAdded);
+    }
+
+    @Override
+    public List<Person> update(Person personUpdated) {
+        return personRepository.update(personUpdated);
+    }
 }

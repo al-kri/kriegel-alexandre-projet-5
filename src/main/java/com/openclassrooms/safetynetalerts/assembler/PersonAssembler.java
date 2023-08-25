@@ -1,5 +1,6 @@
 package com.openclassrooms.safetynetalerts.assembler;
 
+import com.openclassrooms.safetynetalerts.dto.PersonDTO;
 import com.openclassrooms.safetynetalerts.entity.MedicalRecord;
 import com.openclassrooms.safetynetalerts.entity.Person;
 import com.openclassrooms.safetynetalerts.model.PersonInfo;
@@ -24,5 +25,17 @@ public class PersonAssembler {
                             .build();
                 })
                 .toList();
+    }
+
+    public Person toEntity(PersonDTO personDTO) {
+        return Person.builder()
+                .lastName(personDTO.getLastName())
+                .firstName(personDTO.getFirstName())
+                .address((personDTO.getAddress()))
+                .city(personDTO.getCity())
+                .zip(personDTO.getZip())
+                .phone(personDTO.getPhone())
+                .email(personDTO.getEmail())
+                .build();
     }
 }
