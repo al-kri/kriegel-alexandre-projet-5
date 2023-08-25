@@ -23,6 +23,26 @@ public class PersonRepositoryImpl implements PersonRepository {
                 .toList();
     }
 
+    @Override
+    public List<Person> save(Person personAdded) {
+        personList.add(personAdded);
+        return personList;
+    }
+
+    @Override
+    public List<Person> update(Person personUpdated) {
+        personList.stream()
+                .filter(p -> p.getFirstName().equalsIgnoreCase(personUpdated.getFirstName()) && p.getLastName().equalsIgnoreCase(personUpdated.getLastName()))
+                .forEach(person -> {
+                    person.setAddress(personUpdated.getAddress());
+                    person.setCity(personUpdated.getCity());
+                    person.setZip(personUpdated.getZip());
+                    person.setEmail(personUpdated.getEmail());
+                    person.setPhone(personUpdated.getPhone());
+                });
+        return personList;
+    }
+
     private Person getPerson(String person) {
         return personList
                 .stream()
