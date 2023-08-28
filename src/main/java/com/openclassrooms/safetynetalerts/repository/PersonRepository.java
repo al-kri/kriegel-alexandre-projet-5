@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface PersonRepository {
 
+    void delete(String firstName, String lastName);
+
     List<Person> findAll();
 
     List<Person> findByFirstNameAndLastName(String firstName, String lastName);

@@ -22,6 +22,19 @@ public class PersonController {
     private final PersonService personService;
     private final MedicalRecordService medicalRecordService;
 
+    @PostMapping(value = "/person")
+    public ResponseEntity<List<Person>> addPerson(@RequestBody PersonDTO personDTO) {
+        final var personAdded = personAssembler.toEntity(personDTO);
+        return new ResponseEntity<>(personService.save(personAdded), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(value = "/person")
+    public ResponseEntity<Void> deletePerson(@RequestParam(value = "firstName") final String firstName,
+                                             @RequestParam(value = "lastName") final String lastName) {
+        personService.delete(firstName, lastName);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @GetMapping("/persons")
     public ResponseEntity<List<Person>> findAll() {
         return new ResponseEntity<>(personService.findAll(), HttpStatus.OK);
@@ -36,15 +49,9 @@ public class PersonController {
         return new ResponseEntity<>(personInfoList, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/person")
-    public ResponseEntity<List<Person>> addPerson(@RequestBody PersonDTO personDTO) {
-        final var personAdded = personAssembler.toEntity(personDTO);
-        return new ResponseEntity<>(personService.save(personAdded),HttpStatus.CREATED);
-    }
-
     @PutMapping(value = "/person")
     public ResponseEntity<List<Person>> updatePerson(@RequestBody PersonDTO personDTO) {
         final var personUpdated = personAssembler.toEntity(personDTO);
-        return new ResponseEntity<>(personService.update(personUpdated),HttpStatus.CREATED);
+        return new ResponseEntity<>(personService.update(personUpdated), HttpStatus.CREATED);
     }
 }

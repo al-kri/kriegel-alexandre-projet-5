@@ -11,6 +11,15 @@ public class PersonRepositoryImpl implements PersonRepository {
     private final List<Person> personList = JsonData.persons;
 
     @Override
+    public void delete(String firstName, String lastName) {
+        personList
+                .remove(personList.stream()
+                .filter(p -> p.getFirstName().equalsIgnoreCase(firstName) && p.getLastName().equalsIgnoreCase(lastName))
+                .findFirst()
+                .orElseThrow());
+    }
+
+    @Override
     public List<Person> findAll() {
         return personList;
     }
