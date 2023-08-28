@@ -14,6 +14,11 @@ public class PersonServiceImpl implements PersonService {
     private final PersonRepository personRepository;
 
     @Override
+    public void delete(String firstName, String lastName) {
+        personRepository.delete(firstName, lastName);
+    }
+
+    @Override
     public List<Person> findAll() {
         return personRepository.findAll();
     }
