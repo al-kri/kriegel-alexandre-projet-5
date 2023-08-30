@@ -1,6 +1,7 @@
 package com.openclassrooms.safetynetalerts.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.openclassrooms.safetynetalerts.entity.Firestation;
 import com.openclassrooms.safetynetalerts.entity.JsonDataSource;
 import com.openclassrooms.safetynetalerts.entity.MedicalRecord;
 import com.openclassrooms.safetynetalerts.entity.Person;
@@ -19,6 +20,7 @@ public class JsonData {
 
     protected static List<Person> persons = new ArrayList<>();
     protected static List<MedicalRecord> medicalRecords = new ArrayList<>();
+    protected static List<Firestation> firestations = new ArrayList<>();
 
     public static List<Person> loadJsonData() {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -26,6 +28,7 @@ public class JsonData {
             JsonDataSource jsonData = objectMapper.readValue(new File(DATA_FILE_PATH), JsonDataSource.class);
             persons = jsonData.getPersons();
             medicalRecords = jsonData.getMedicalRecords();
+            firestations = jsonData.getFirestations();
         } catch (IOException e) {
             e.printStackTrace();
         }
