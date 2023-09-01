@@ -14,9 +14,9 @@ public class PersonRepositoryImpl implements PersonRepository {
     public void delete(String firstName, String lastName) {
         personList
                 .remove(personList.stream()
-                .filter(p -> p.getFirstName().equalsIgnoreCase(firstName) && p.getLastName().equalsIgnoreCase(lastName))
-                .findFirst()
-                .orElseThrow());
+                        .filter(p -> p.getFirstName().equalsIgnoreCase(firstName) && p.getLastName().equalsIgnoreCase(lastName))
+                        .findFirst()
+                        .orElseThrow(null));
     }
 
     @Override
@@ -30,6 +30,14 @@ public class PersonRepositoryImpl implements PersonRepository {
                 .stream()
                 .filter(p -> p.getFirstName().equalsIgnoreCase(firstName) && p.getLastName().equalsIgnoreCase(lastName))
                 .toList();
+    }
+
+    private Person getPerson(String person) {
+        return personList
+                .stream()
+                .filter(p -> p.getFirstName().equalsIgnoreCase(person))
+                .findFirst()
+                .get();
     }
 
     @Override
@@ -50,14 +58,6 @@ public class PersonRepositoryImpl implements PersonRepository {
                     person.setPhone(personUpdated.getPhone());
                 });
         return personList;
-    }
-
-    private Person getPerson(String person) {
-        return personList
-                .stream()
-                .filter(p -> p.getFirstName().equalsIgnoreCase(person))
-                .findFirst()
-                .get();
     }
 }
 

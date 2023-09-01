@@ -1,15 +1,15 @@
-package com.openclassrooms.safetynetalerts.entity;
+package com.openclassrooms.safetynetalerts.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
 @Builder
-public class Firestation {
+@NoArgsConstructor
+@AllArgsConstructor
+public class FirestationInfo {
 
     private String address;
     private String station;
