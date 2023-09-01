@@ -14,6 +14,11 @@ public class FirestationServiceImpl implements FirestationService {
     private final FirestationRepository firestationRepository;
 
     @Override
+    public void delete(String address, String station) {
+        firestationRepository.delete(address, station);
+    }
+
+    @Override
     public List<Firestation> findAll() {
         return firestationRepository.findAll();
     }
@@ -21,5 +26,15 @@ public class FirestationServiceImpl implements FirestationService {
     @Override
     public List<Firestation> findByAddress(String address) {
         return firestationRepository.findByAddress(address);
+    }
+
+    @Override
+    public List<Firestation> save(Firestation firestationAdded) {
+        return firestationRepository.save(firestationAdded);
+    }
+
+    @Override
+    public List<Firestation> update(Firestation firestationUpdated) {
+        return firestationRepository.update(firestationUpdated);
     }
 }
