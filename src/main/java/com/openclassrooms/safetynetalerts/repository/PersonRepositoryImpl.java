@@ -16,7 +16,7 @@ public class PersonRepositoryImpl implements PersonRepository {
                 .remove(personList.stream()
                         .filter(p -> p.getFirstName().equalsIgnoreCase(firstName) && p.getLastName().equalsIgnoreCase(lastName))
                         .findFirst()
-                        .orElseThrow(null));
+                        .orElse(null));
     }
 
     @Override
