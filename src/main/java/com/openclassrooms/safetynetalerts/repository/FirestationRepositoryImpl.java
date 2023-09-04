@@ -14,9 +14,9 @@ public class FirestationRepositoryImpl implements FirestationRepository {
     public void delete(String address, String station) {
         firestationList
                 .remove(firestationList.stream()
-                        .filter(f -> f.getAddress().equalsIgnoreCase(address) && f.getStation().equalsIgnoreCase(station))
+                        .filter(f -> f.getAddress().equalsIgnoreCase(address) || f.getStation().equalsIgnoreCase(station))
                         .findFirst()
-                        .orElseThrow(null));
+                        .orElse(null));
     }
 
     @Override

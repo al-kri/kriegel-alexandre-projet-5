@@ -1,17 +1,17 @@
-package com.openclassrooms.safetynetalerts.entity;
+package com.openclassrooms.safetynetalerts.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
 @Builder
-public class MedicalRecord {
+@NoArgsConstructor
+@AllArgsConstructor
+public class MedicalRecordInfo {
 
     private String firstName;
     private String lastName;

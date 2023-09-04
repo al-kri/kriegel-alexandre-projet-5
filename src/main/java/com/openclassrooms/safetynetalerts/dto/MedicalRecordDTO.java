@@ -1,17 +1,13 @@
-package com.openclassrooms.safetynetalerts.entity;
+package com.openclassrooms.safetynetalerts.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class MedicalRecord {
+@Getter
+public class MedicalRecordDTO {
 
     private String firstName;
     private String lastName;

@@ -11,10 +11,41 @@ public class MedicalRecordRepositoryImpl implements MedicalRecordRepository {
     private final List<MedicalRecord> medicalRecordList = JsonData.medicalRecords;
 
     @Override
+    public void delete(String firstName, String lastName) {
+        medicalRecordList
+                .remove(medicalRecordList.stream()
+                        .filter(mr -> mr.getFirstName().equalsIgnoreCase(firstName) && mr.getLastName().equalsIgnoreCase(lastName))
+                        .findFirst()
+                        .orElse(null));
+    }
+
+    @Override
+    public List<MedicalRecord> findAll() {
+        return medicalRecordList;
+    }
+
+    @Override
     public List<MedicalRecord> findByFirstNameAndLastName(String firstName, String lastName) {
         return medicalRecordList
                 .stream()
                 .filter(p -> p.getFirstName().equalsIgnoreCase(firstName) && p.getLastName().equalsIgnoreCase(lastName))
                 .toList();
+    }
+
+    @Override
+    public List<MedicalRecord> save(MedicalRecord medicalRecordAdded) {
+        medicalRecordList.add(medicalRecordAdded);
+        return medicalRecordList;
+    }
+
+    @Override
+    public List<MedicalRecord> update(MedicalRecord medicalRecordUpdated) {
+        medicalRecordList.stream()
+                .filter(mr -> mr.getFirstName().equalsIgnoreCase(medicalRecordUpdated.getFirstName()) && mr.getLastName().equalsIgnoreCase(medicalRecordUpdated.getLastName()))
+                .forEach(medicalRecord -> {
+                    medicalRecord.setMedications(medicalRecordUpdated.getMedications());
+                    medicalRecord.setAllergies(medicalRecordUpdated.getAllergies());
+                });
+        return medicalRecordList;
     }
 }
