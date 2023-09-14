@@ -59,5 +59,13 @@ public class PersonRepositoryImpl implements PersonRepository {
                 });
         return personList;
     }
+
+    @Override
+    public List<String> getPersonsEmailByCity(String city) {
+        return personList.stream()
+                .filter(p -> p.getCity().equalsIgnoreCase(city))
+                .map(Person::getEmail).toList();
+    }
 }
+
 

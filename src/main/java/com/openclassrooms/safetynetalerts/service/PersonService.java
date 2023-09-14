@@ -15,4 +15,6 @@ public interface PersonService {
     List<Person> save(Person personAdded);
 
     List<Person> update(Person personUpdated);
+    List<String> getPersonsEmailByCity(String citySearched);
+
 }
