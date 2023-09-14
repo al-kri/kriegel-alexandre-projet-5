@@ -36,7 +36,7 @@ public class MedicalRecordController {
         return new ResponseEntity<>(medicalRecordService.findAll(), HttpStatus.OK);
     }
 
-    @PutMapping(value = "medicalRecord")
+    @PutMapping(value = "/medicalRecord")
     public ResponseEntity<List<MedicalRecord>> updateMedicalRecord(@RequestBody MedicalRecordDTO medicalRecordDTO) {
         final var medicalRecordUpdated = medicalRecordAssembler.toEntity(medicalRecordDTO);
         return new ResponseEntity<>(medicalRecordService.update(medicalRecordUpdated), HttpStatus.OK);
