@@ -15,4 +15,6 @@ public interface PersonRepository {
     List<Person> save(Person personAdded);
 
     List<Person> update(Person personUpdated);
+
+    List<String> getPersonsEmailByCity(String city);
 }

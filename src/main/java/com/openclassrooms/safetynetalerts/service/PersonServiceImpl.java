@@ -37,4 +37,9 @@ public class PersonServiceImpl implements PersonService {
     public List<Person> update(Person personUpdated) {
         return personRepository.update(personUpdated);
     }
+
+    public List<String> getPersonsEmailByCity(String citySearched) {
+        return personRepository.getPersonsEmailByCity(citySearched);
+    }
+
 }
