@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+import static com.openclassrooms.safetynetalerts.utils.Utils.getAgeFromBirthdate;
+
 @Component
 public class PersonAssembler {
     public List<PersonInfo> findByFirstNameAndLastNameModel(List<Person> persons, List<MedicalRecord> medicalRecords) {
@@ -19,7 +21,7 @@ public class PersonAssembler {
                             .lastName(person.getLastName())
                             .address(person.getAddress())
                             .email(person.getEmail())
-                            .birthdate(medicalRecord.getBirthdate())
+                            .age(getAgeFromBirthdate(medicalRecord.getBirthdate()))
                             .medications(medicalRecord.getMedications())
                             .allergies(medicalRecord.getAllergies())
                             .build();

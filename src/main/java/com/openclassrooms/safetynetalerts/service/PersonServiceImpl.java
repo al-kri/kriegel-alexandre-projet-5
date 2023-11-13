@@ -1,5 +1,6 @@
 package com.openclassrooms.safetynetalerts.service;
 
+import com.openclassrooms.safetynetalerts.entity.Firestation;
 import com.openclassrooms.safetynetalerts.entity.Person;
 import com.openclassrooms.safetynetalerts.repository.PersonRepository;
 import lombok.AllArgsConstructor;
@@ -41,5 +42,11 @@ public class PersonServiceImpl implements PersonService {
     public List<String> getPersonsEmailByCity(String citySearched) {
         return personRepository.getPersonsEmailByCity(citySearched);
     }
+
+    @Override
+    public List<Person> findAllByFirestation(List<Firestation> firestationSearched) {
+        return personRepository.findAllByFirestation(firestationSearched);
+    }
+
 
 }

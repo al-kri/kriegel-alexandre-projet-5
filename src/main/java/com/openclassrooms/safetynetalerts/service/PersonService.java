@@ -1,5 +1,6 @@
 package com.openclassrooms.safetynetalerts.service;
 
+import com.openclassrooms.safetynetalerts.entity.Firestation;
 import com.openclassrooms.safetynetalerts.entity.Person;
 
 import java.util.List;
@@ -16,5 +17,8 @@ public interface PersonService {
 
     List<Person> update(Person personUpdated);
     List<String> getPersonsEmailByCity(String citySearched);
+
+    List<Person> findAllByFirestation(List<Firestation> firestationSearched);
+
 
 }

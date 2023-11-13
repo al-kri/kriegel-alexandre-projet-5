@@ -1,5 +1,6 @@
 package com.openclassrooms.safetynetalerts.repository;
 
+import com.openclassrooms.safetynetalerts.entity.Firestation;
 import com.openclassrooms.safetynetalerts.entity.Person;
 import org.springframework.stereotype.Repository;
 
@@ -65,6 +66,13 @@ public class PersonRepositoryImpl implements PersonRepository {
         return personList.stream()
                 .filter(p -> p.getCity().equalsIgnoreCase(city))
                 .map(Person::getEmail).toList();
+    }
+
+    public List<Person> findAllByFirestation(List<Firestation> firestationList) {
+        return personList
+                .stream()
+                .filter(p -> firestationList.stream().map(Firestation::getAddress).toList().contains(p.getAddress()))
+                .toList();
     }
 }
 
