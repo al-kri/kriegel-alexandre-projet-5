@@ -16,7 +16,7 @@ public class PersonInfo {
     private String lastName;
     private String address;
     private String email;
-    private String birthdate;
+    private int age;
     private List<String> medications;
     private List<String> allergies;
 }

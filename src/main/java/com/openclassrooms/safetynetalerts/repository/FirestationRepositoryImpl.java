@@ -31,6 +31,12 @@ public class FirestationRepositoryImpl implements FirestationRepository {
                 .filter(f -> f.getAddress().equalsIgnoreCase(address))
                 .toList();
     }
+    public List<Firestation> findByStation(String station) {
+        return firestationList
+                .stream()
+                .filter(f -> f.getStation().equalsIgnoreCase(station))
+                .toList();
+    }
 
     @Override
     public List<Firestation> save(Firestation firestationAdded) {

@@ -1,6 +1,7 @@
 package com.openclassrooms.safetynetalerts.repository;
 
 import com.openclassrooms.safetynetalerts.entity.MedicalRecord;
+import com.openclassrooms.safetynetalerts.entity.Person;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,6 +30,20 @@ public class MedicalRecordRepositoryImpl implements MedicalRecordRepository {
         return medicalRecordList
                 .stream()
                 .filter(p -> p.getFirstName().equalsIgnoreCase(firstName) && p.getLastName().equalsIgnoreCase(lastName))
+                .toList();
+    }
+
+    @Override
+    public List<MedicalRecord> findByPersonList(List<Person> personList) {
+
+        return personList.stream()
+                .map(person ->
+                        medicalRecordList
+                                .stream()
+                                .filter(mr -> person.getFirstName().equalsIgnoreCase(mr.getFirstName()) && person.getLastName().equalsIgnoreCase(mr.getLastName()))
+                                .findFirst()
+                                .orElse(null)
+                )
                 .toList();
     }
 

@@ -1,6 +1,7 @@
 package com.openclassrooms.safetynetalerts.service;
 
 import com.openclassrooms.safetynetalerts.entity.MedicalRecord;
+import com.openclassrooms.safetynetalerts.entity.Person;
 import com.openclassrooms.safetynetalerts.repository.MedicalRecordRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,10 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     @Override
     public List<MedicalRecord> findByFirstNameAndLastName(String firstName, String lastName) {
         return medicalRecordRepository.findByFirstNameAndLastName(firstName, lastName);
+    }
+    @Override
+    public List<MedicalRecord> findByPersonList(List<Person> personList) {
+        return medicalRecordRepository.findByPersonList(personList);
     }
 
     @Override

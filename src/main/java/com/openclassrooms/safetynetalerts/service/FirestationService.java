@@ -10,6 +10,7 @@ public interface FirestationService {
     List<Firestation> findAll();
 
     List<Firestation> findByAddress(String address);
+    List<Firestation> findByStation(String station);
 
     List<Firestation> save(Firestation firestationAdded);
 
