@@ -1,10 +1,11 @@
 package com.openclassrooms.safetynetalerts.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Builder
 public class PersonDTO {
 
     private String firstName;

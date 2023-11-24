@@ -1,6 +1,7 @@
 package com.openclassrooms.safetynetalerts.repository;
 
 import com.openclassrooms.safetynetalerts.entity.Firestation;
+import lombok.Getter;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 @Repository
 public class FirestationRepositoryImpl implements FirestationRepository {
 
+    @Getter
     private final List<Firestation> firestationList = JsonData.firestations;
 
     @Override

@@ -22,7 +22,7 @@ public class JsonData {
     protected static List<MedicalRecord> medicalRecords = new ArrayList<>();
     protected static List<Firestation> firestations = new ArrayList<>();
 
-    public static List<Person> loadJsonData() {
+    public static void loadJsonData() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             JsonDataSource jsonData = objectMapper.readValue(new File(DATA_FILE_PATH), JsonDataSource.class);
@@ -32,6 +32,5 @@ public class JsonData {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return persons;
     }
 }
