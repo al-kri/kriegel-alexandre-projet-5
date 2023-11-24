@@ -39,7 +39,6 @@ class PersonServiceImplTest {
     void findAllByFirestation() {
         assertDoesNotThrow(() -> personService.findAllByFirestation(List.of()));
         Mockito.verify(personRepository).findAllByFirestation(anyList());
-
     }
 
     @Test
@@ -52,7 +51,6 @@ class PersonServiceImplTest {
     void getPersonsEmailByCity() {
         assertDoesNotThrow(() -> personService.getPersonsEmailByCity("city name"));
         Mockito.verify(personRepository).getPersonsEmailByCity(any());
-
     }
 
     @Test

@@ -55,6 +55,5 @@ class MedicalRecordServiceImplTest {
     void update() {
         assertDoesNotThrow(() -> medicalRecordService.update(MedicalRecord.builder().build()));
         Mockito.verify(medicalRecordRepository).update(any());
-
     }
 }
