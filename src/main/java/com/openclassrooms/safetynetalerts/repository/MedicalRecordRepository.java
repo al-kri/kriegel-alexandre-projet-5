@@ -10,7 +10,6 @@ public interface MedicalRecordRepository {
 
     List<MedicalRecord> findAll();
 
-    List<MedicalRecord> findByFirstNameAndLastName(String firstName, String lastName);
     List<MedicalRecord> findByPersonList(List<Person> personList);
 
     List<MedicalRecord> save(MedicalRecord medicalRecordAdded);

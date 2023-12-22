@@ -59,6 +59,15 @@ class MedicalRecordControllerTest {
     }
 
     @Test
+    void findAll() throws Exception {
+        final var url = "/medicalRecords";
+        mockMvc.perform(get(url))
+                .andDo(print())
+                .andExpect(status().isOk());
+        verify(medicalRecordService).findAll();
+    }
+
+    @Test
     void updateMedicalRecord() throws Exception {
         final var url = "/medicalRecord";
         final var dto = MedicalRecordDTO.builder()
