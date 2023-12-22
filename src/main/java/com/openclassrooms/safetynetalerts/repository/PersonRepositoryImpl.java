@@ -33,14 +33,6 @@ public class PersonRepositoryImpl implements PersonRepository {
                 .toList();
     }
 
-    private Person getPerson(String person) {
-        return personList
-                .stream()
-                .filter(p -> p.getFirstName().equalsIgnoreCase(person))
-                .findFirst()
-                .get();
-    }
-
     @Override
     public List<Person> save(Person personAdded) {
         personList.add(personAdded);

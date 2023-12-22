@@ -34,12 +34,6 @@ class MedicalRecordServiceImplTest {
     }
 
     @Test
-    void findByFirstNameAndLastName() {
-        assertDoesNotThrow(() -> medicalRecordService.findByFirstNameAndLastName("firstName", "lastName"));
-        Mockito.verify(medicalRecordRepository).findByFirstNameAndLastName(anyString(), anyString());
-    }
-
-    @Test
     void findByPersonList() {
         assertDoesNotThrow(() -> medicalRecordService.findByPersonList(anyList()));
         Mockito.verify(medicalRecordRepository).findByPersonList(anyList());

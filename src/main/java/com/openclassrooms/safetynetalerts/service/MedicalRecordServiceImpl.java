@@ -15,10 +15,6 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     private final MedicalRecordRepository medicalRecordRepository;
 
     @Override
-    public List<MedicalRecord> findByFirstNameAndLastName(String firstName, String lastName) {
-        return medicalRecordRepository.findByFirstNameAndLastName(firstName, lastName);
-    }
-    @Override
     public List<MedicalRecord> findByPersonList(List<Person> personList) {
         return medicalRecordRepository.findByPersonList(personList);
     }

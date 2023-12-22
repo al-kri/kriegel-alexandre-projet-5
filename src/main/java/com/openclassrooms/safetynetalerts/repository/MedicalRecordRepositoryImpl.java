@@ -26,14 +26,6 @@ public class MedicalRecordRepositoryImpl implements MedicalRecordRepository {
     }
 
     @Override
-    public List<MedicalRecord> findByFirstNameAndLastName(String firstName, String lastName) {
-        return medicalRecordList
-                .stream()
-                .filter(p -> p.getFirstName().equalsIgnoreCase(firstName) && p.getLastName().equalsIgnoreCase(lastName))
-                .toList();
-    }
-
-    @Override
     public List<MedicalRecord> findByPersonList(List<Person> personList) {
 
         return personList.stream()

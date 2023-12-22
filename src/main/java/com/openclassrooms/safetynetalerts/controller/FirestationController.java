@@ -29,7 +29,6 @@ public class FirestationController {
                                                   @RequestParam(value = "station") final String station) {
         firestationService.delete(address, station);
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
 
     @GetMapping("/firestations")

@@ -61,6 +61,33 @@ class FirestationControllerTest {
     }
 
     @Test
+    void findAll() throws Exception {
+        final var url = "/firestations";
+        mockMvc.perform(get(url))
+                .andDo(print())
+                .andExpect(status().isOk());
+        verify(firestationService).findAll();
+    }
+
+    @Test
+    void findByAddress() throws Exception {
+        final var url = "/firestationInfo/address";
+        mockMvc.perform(get(url).param("address", "addresse"))
+                .andDo(print())
+                .andExpect(status().isOk());
+        verify(firestationService).findByAddress("addresse");
+    }
+
+    @Test
+    void findByStation() throws Exception {
+        final var url = "/firestationInfo/station";
+        mockMvc.perform(get(url).param("station", "1"))
+                .andDo(print())
+                .andExpect(status().isOk());
+        verify(firestationService).findByStation("1");
+    }
+
+    @Test
     void updateFirestation() throws Exception {
         final var url = "/firestation";
         final var dto = FirestationDTO.builder()
