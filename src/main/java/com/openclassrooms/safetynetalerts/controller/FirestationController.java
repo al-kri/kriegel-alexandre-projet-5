@@ -26,7 +26,7 @@ public class FirestationController {
     public ResponseEntity<List<Firestation>> addFirestation(@RequestBody final FirestationDTO firestationDTO) {
         log.info("Call to addFirestation with object : " + asJson(firestationDTO));
         final var firestationAdded = firestationAssembler.toEntity(firestationDTO);
-        log.info("New firestation added successfully");
+        log.info("New firestation successfully added");
         return new ResponseEntity<>(firestationService.save(firestationAdded), HttpStatus.CREATED);
     }
 
@@ -35,7 +35,6 @@ public class FirestationController {
                                                   @RequestParam(value = "station") final String station) {
         log.info("Call to deleteFirestation with address : " + asJson(address) + (" and station number : ") + asJson(station));
         firestationService.delete(address, station);
-        log.info("Firestation successfully deleted");
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -60,7 +59,6 @@ public class FirestationController {
     public ResponseEntity<List<Firestation>> updateFirestation(@RequestBody final FirestationDTO firestationDTO) {
         log.info("Call to updateFirestation with object : " + asJson(firestationDTO));
         final var firestationUpdated = firestationAssembler.toEntity(firestationDTO);
-        log.info("Firestation successfully updated");
         return new ResponseEntity<>(firestationService.update(firestationUpdated), HttpStatus.CREATED);
     }
 }
