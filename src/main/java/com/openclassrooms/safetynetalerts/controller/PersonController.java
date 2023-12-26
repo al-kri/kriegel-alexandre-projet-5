@@ -27,25 +27,29 @@ public class PersonController {
         log.info("Call to addPerson with object : " + asJson(personDTO));
         final var personAdded = personAssembler.toEntity(personDTO);
         List<Person> result = personService.save(personAdded);
-        log.info("New person added in persons :" + asJson(result));
+        log.info("New person added in persons list :" + asJson(result));
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
     @DeleteMapping(value = "/person")
     public ResponseEntity<Void> deletePerson(@RequestParam(value = "firstName") final String firstName,
                                              @RequestParam(value = "lastName") final String lastName) {
+        log.info("Call to deletePerson with firstname: " + asJson(firstName) + (" and lastname: ") + asJson(lastName));
         personService.delete(firstName, lastName);
+        log.info(firstName + " " + lastName + " was successfully deleted");
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/persons")
     public ResponseEntity<List<Person>> findAll() {
+        log.info("Call to findAll");
         return new ResponseEntity<>(personService.findAll(), HttpStatus.OK);
     }
 
     @PutMapping(value = "/person")
     public ResponseEntity<List<Person>> updatePerson(@RequestBody PersonDTO personDTO) {
         final var personUpdated = personAssembler.toEntity(personDTO);
+        log.info("Call to updatePerson with object :" + asJson(personDTO));
         return new ResponseEntity<>(personService.update(personUpdated), HttpStatus.CREATED);
     }
 }
