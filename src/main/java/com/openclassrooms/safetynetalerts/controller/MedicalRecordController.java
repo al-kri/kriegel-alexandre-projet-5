@@ -26,7 +26,7 @@ public class MedicalRecordController {
     public ResponseEntity<List<MedicalRecord>> addMedicalRecord(@RequestBody final MedicalRecordDTO medicalRecordDTO) {
         log.info("Call to addMedicalRecord with object : " + asJson(medicalRecordDTO));
         final var medicalRecordAdded = medicalRecordAssembler.toEntity(medicalRecordDTO);
-        log.info("MedicalRecord was successfully updated");
+        log.info("MedicalRecord was successfully added");
         return new ResponseEntity<>(medicalRecordService.save(medicalRecordAdded), HttpStatus.CREATED);
     }
 

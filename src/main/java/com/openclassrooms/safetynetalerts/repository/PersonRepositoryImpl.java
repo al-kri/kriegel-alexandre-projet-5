@@ -2,10 +2,13 @@ package com.openclassrooms.safetynetalerts.repository;
 
 import com.openclassrooms.safetynetalerts.entity.Firestation;
 import com.openclassrooms.safetynetalerts.entity.Person;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
+@Slf4j
 @Repository
 public class PersonRepositoryImpl implements PersonRepository {
 
@@ -14,10 +17,13 @@ public class PersonRepositoryImpl implements PersonRepository {
     @Override
     public void delete(String firstName, String lastName) {
         personList
-                .remove(personList.stream()
+                .stream()
                         .filter(p -> p.getFirstName().equalsIgnoreCase(firstName) && p.getLastName().equalsIgnoreCase(lastName))
                         .findFirst()
-                        .orElse(null));
+                        .ifPresentOrElse(person -> {
+                            personList.remove(person);
+                            log.info(firstName + " " + lastName + " successfully deleted");
+                        }, () -> log.info(firstName + " " + lastName + " is not present in database and can't be deleted"));
     }
 
     @Override
@@ -41,6 +47,8 @@ public class PersonRepositoryImpl implements PersonRepository {
 
     @Override
     public List<Person> update(Person personUpdated) {
+        AtomicBoolean personFound = new AtomicBoolean(false);
+
         personList.stream()
                 .filter(p -> p.getFirstName().equalsIgnoreCase(personUpdated.getFirstName()) && p.getLastName().equalsIgnoreCase(personUpdated.getLastName()))
                 .forEach(person -> {
@@ -49,7 +57,14 @@ public class PersonRepositoryImpl implements PersonRepository {
                     person.setZip(personUpdated.getZip());
                     person.setEmail(personUpdated.getEmail());
                     person.setPhone(personUpdated.getPhone());
+                    personFound.set(true);
                 });
+
+        if(personFound.get()) {
+            log.info("Info of : " + personUpdated.getFirstName() + " " + personUpdated.getLastName() + " successfully updated");
+        } else {
+            log.info(personUpdated.getFirstName() + " " + personUpdated.getLastName() + " not found in database and can't be updated");
+        }
         return personList;
     }
 

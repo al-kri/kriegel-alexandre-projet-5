@@ -2,10 +2,11 @@ package com.openclassrooms.safetynetalerts.repository;
 
 import com.openclassrooms.safetynetalerts.entity.Firestation;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Slf4j
 @Repository
 public class FirestationRepositoryImpl implements FirestationRepository {
 
@@ -15,10 +16,13 @@ public class FirestationRepositoryImpl implements FirestationRepository {
     @Override
     public void delete(String address, String station) {
         firestationList
-                .remove(firestationList.stream()
+                .stream()
                         .filter(f -> f.getAddress().equalsIgnoreCase(address) || f.getStation().equalsIgnoreCase(station))
                         .findFirst()
-                        .orElse(null));
+                        .ifPresentOrElse(firestation -> {
+                            firestationList.remove(firestation);
+                            log.info("Firestation with address " + address + " was succesfully deleted");
+                        }, () -> log.info("Firestation is not present in database and can't be removed"));
     }
 
     @Override
@@ -51,7 +55,10 @@ public class FirestationRepositoryImpl implements FirestationRepository {
         firestationList.stream()
                 .filter(f -> f.getAddress().equalsIgnoreCase(firestationUpdated.getAddress()))
                 .findFirst()
-                .ifPresent(firestationToUpdate -> firestationToUpdate.setStation(firestationUpdated.getStation()));
+                .ifPresentOrElse(firestationToUpdate -> {
+                    firestationToUpdate.setStation(firestationUpdated.getStation());
+                    log.info("Firestation was successfully updated");
+                }, () -> log.info("Firestation is not present in database and can't be updated"));
         return firestationList;
     }
 }
