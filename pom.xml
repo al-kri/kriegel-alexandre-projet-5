@@ -90,6 +90,13 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.11</version>
+				<configuration>
+					<excludes>
+						<exclude>com/openclassrooms/safetynetalerts/entity/*</exclude>
+						<exclude>com/openclassrooms/safetynetalerts/model/*</exclude>
+						<exclude>com/openclassrooms/safetynetalerts/dto/*</exclude>
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>
