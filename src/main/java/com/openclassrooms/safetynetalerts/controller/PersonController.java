@@ -42,7 +42,8 @@ public class PersonController {
     @GetMapping("/persons")
     public ResponseEntity<List<Person>> findAll() {
         log.info("Call to findAll");
-        return new ResponseEntity<>(personService.findAll(), HttpStatus.OK);
+        final var listOfAllPersons = personService.findAll();
+        return new ResponseEntity<>(listOfAllPersons, HttpStatus.OK);
     }
 
     @PutMapping(value = "/person")

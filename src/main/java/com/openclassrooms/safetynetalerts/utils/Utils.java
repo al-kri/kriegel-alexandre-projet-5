@@ -22,13 +22,11 @@ public abstract class Utils {
         try {
             return MAPPER.writeValueAsString(dto);
         } catch (JsonProcessingException e) {
-            return "";
+            return "Cannot convert as Json";
         }
     }
 
     public static ObjectMapper getMapper() {
         return MAPPER;
     }
-
-
 }

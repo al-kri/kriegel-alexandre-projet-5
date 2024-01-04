@@ -46,12 +46,12 @@ class SafetyAlertAssemblerTest {
         medicalRecords.add(MedicalRecord.builder()
                 .firstName("firstNameChild")
                 .lastName("lastNameChild")
-                .birthdate("01/13/2005")
+                .birthdate("06/15/2005")
                 .build());
         medicalRecords.add(MedicalRecord.builder()
                 .firstName("firstNameAdult")
                 .lastName("lastNameAdult")
-                .birthdate("01/13/1990")
+                .birthdate("06/15/1990")
                 .build());
 
         List<ChildAlertInfo> result = safetyAlertAssembler.toChildAlertInfoModel(address, personList, medicalRecords);
@@ -93,14 +93,14 @@ class SafetyAlertAssemblerTest {
         medicalRecordList.add(MedicalRecord.builder()
                 .firstName("firstNameChild")
                 .lastName("lastNameChild")
-                .birthdate("01/15/2005")
+                .birthdate("06/15/2005")
                 .allergies(List.of("Peanuts", "Fur"))
                 .medications(List.of("Med1", "Med2"))
                 .build());
         medicalRecordList.add(MedicalRecord.builder()
                 .firstName("firstNameAdult")
                 .lastName("lastNameAdult")
-                .birthdate("01/15/1995")
+                .birthdate("06/15/1995")
                 .allergies(List.of("None"))
                 .medications(List.of("None"))
                 .build());
@@ -157,12 +157,12 @@ class SafetyAlertAssemblerTest {
         medicalRecordList.add(MedicalRecord.builder()
                 .firstName("firstNameChild")
                 .lastName("lastNameChild")
-                .birthdate("01/01/2005")
+                .birthdate("06/15/2005")
                 .build());
         medicalRecordList.add(MedicalRecord.builder()
                 .firstName("firstNameAdult")
                 .lastName("lastNameAdult")
-                .birthdate("05/10/1995")
+                .birthdate("06/15/1995")
                 .build());
 
         List<Firestation> firestationList = new ArrayList<>();
@@ -213,14 +213,14 @@ class SafetyAlertAssemblerTest {
         medicalRecordList.add(MedicalRecord.builder()
                 .firstName("firstNameChild")
                 .lastName("lastNameChild")
-                .birthdate("01/01/2005")
+                .birthdate("06/15/2005")
                 .allergies(List.of("Peanuts", "Fur"))
                 .medications(List.of("Med1", "Med2"))
                 .build());
         medicalRecordList.add(MedicalRecord.builder()
                 .firstName("firstNameAdult")
                 .lastName("lastNameAdult")
-                .birthdate("05/10/1995")
+                .birthdate("06/15/1995")
                 .allergies(List.of("None"))
                 .medications(List.of("None"))
                 .build());

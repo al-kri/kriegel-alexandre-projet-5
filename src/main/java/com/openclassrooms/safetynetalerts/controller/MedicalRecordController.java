@@ -41,7 +41,9 @@ public class MedicalRecordController {
     @GetMapping("/medicalRecords")
     public ResponseEntity<List<MedicalRecord>> findAll() {
         log.info("Call to findAll");
-        return new ResponseEntity<>(medicalRecordService.findAll(), HttpStatus.OK);
+        final var listOfAllMedicalRecords = medicalRecordService.findAll();
+        log.info(asJson(listOfAllMedicalRecords));
+        return new ResponseEntity<>(listOfAllMedicalRecords, HttpStatus.OK);
     }
 
     @PutMapping(value = "/medicalRecord")
@@ -50,5 +52,4 @@ public class MedicalRecordController {
         final var medicalRecordUpdated = medicalRecordAssembler.toEntity(medicalRecordDTO);
         return new ResponseEntity<>(medicalRecordService.update(medicalRecordUpdated), HttpStatus.OK);
     }
-
 }
