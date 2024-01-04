@@ -26,7 +26,7 @@ public class FirestationController {
     public ResponseEntity<List<Firestation>> addFirestation(@RequestBody final FirestationDTO firestationDTO) {
         log.info("Call to addFirestation with object : " + asJson(firestationDTO));
         final var firestationAdded = firestationAssembler.toEntity(firestationDTO);
-        log.info("New firestation successfully added");
+        log.info("New firestation successfully added :" + asJson(firestationAdded));
         return new ResponseEntity<>(firestationService.save(firestationAdded), HttpStatus.CREATED);
     }
 
@@ -41,18 +41,24 @@ public class FirestationController {
     @GetMapping("/firestations")
     public ResponseEntity<List<Firestation>> findAll() {
         log.info("Call to findAll");
-        return new ResponseEntity<>(firestationService.findAll(), HttpStatus.OK);
+        final var listOfAllFirestation = firestationService.findAll();
+        log.info(asJson(listOfAllFirestation));
+        return new ResponseEntity<>(listOfAllFirestation, HttpStatus.OK);
     }
 
     @GetMapping(value = "/firestationInfo/address", produces = "application/json")
     public ResponseEntity<List<Firestation>> findByAddress(@RequestParam(value = "address") final String address) {
         log.info("Call to findByAddress with address : " + asJson(address));
-        return new ResponseEntity<>(firestationService.findByAddress(address), HttpStatus.OK);
+        final var listByAddress = firestationService.findByAddress(address);
+        log.info(asJson(listByAddress));
+        return new ResponseEntity<>(listByAddress, HttpStatus.OK);
     }
     @GetMapping(value = "/firestationInfo/station", produces = "application/json")
     public ResponseEntity<List<Firestation>> findByStation(@RequestParam(value = "station") final String station) {
         log.info("Call to findByStation with number : " + asJson(station));
-        return new ResponseEntity<>(firestationService.findByStation(station), HttpStatus.OK);
+        final var listByStation = firestationService.findByStation(station);
+        log.info(asJson(listByStation));
+        return new ResponseEntity<>(listByStation, HttpStatus.OK);
     }
 
     @PutMapping(value = "/firestation")

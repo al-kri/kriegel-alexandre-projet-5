@@ -17,12 +17,12 @@ public class FirestationRepositoryImpl implements FirestationRepository {
     public void delete(String address, String station) {
         firestationList
                 .stream()
-                        .filter(f -> f.getAddress().equalsIgnoreCase(address) || f.getStation().equalsIgnoreCase(station))
+                        .filter(f -> f.getAddress().equalsIgnoreCase(address) && f.getStation().equalsIgnoreCase(station))
                         .findFirst()
                         .ifPresentOrElse(firestation -> {
                             firestationList.remove(firestation);
                             log.info("Firestation with address " + address + " was succesfully deleted");
-                        }, () -> log.info("Firestation is not present in database and can't be removed"));
+                        }, () -> log.warn("Firestation is not present in database and can't be removed"));
     }
 
     @Override
@@ -57,8 +57,8 @@ public class FirestationRepositoryImpl implements FirestationRepository {
                 .findFirst()
                 .ifPresentOrElse(firestationToUpdate -> {
                     firestationToUpdate.setStation(firestationUpdated.getStation());
-                    log.info("Firestation was successfully updated");
-                }, () -> log.info("Firestation is not present in database and can't be updated"));
+                    log.info(firestationUpdated + "was successfully updated");
+                }, () -> log.warn("Firestation is not present in database and can't be updated"));
         return firestationList;
     }
 }

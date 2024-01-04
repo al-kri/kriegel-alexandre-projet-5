@@ -22,6 +22,7 @@ public class CommunityController {
     @GetMapping(value = "/communityEmail")
     public ResponseEntity<List<String>> getPersonsEmailByCity(@RequestParam(value = "city") String city) {
         log.info("Call to getPersonsEmailByCity with :" + asJson(city));
+        log.info(asJson(personService.getPersonsEmailByCity(city)));
         return new ResponseEntity<>(personService.getPersonsEmailByCity(city), HttpStatus.OK);
     }
 }

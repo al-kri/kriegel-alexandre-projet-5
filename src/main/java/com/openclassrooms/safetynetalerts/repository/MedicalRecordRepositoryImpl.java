@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @Slf4j
 @Repository
@@ -23,7 +22,7 @@ public class MedicalRecordRepositoryImpl implements MedicalRecordRepository {
                         .ifPresentOrElse(medicalRecord -> {
                             medicalRecordList.remove(medicalRecord);
                             log.info("MedicalRecord of " + firstName + " " + lastName + " successfully deleted");
-                        }, () -> log.info("MedicalRecord is not present in database and can't be deleted"));
+                        }, () -> log.warn("MedicalRecord is not present in database and can't be deleted"));
     }
 
     @Override
@@ -53,20 +52,20 @@ public class MedicalRecordRepositoryImpl implements MedicalRecordRepository {
 
     @Override
     public List<MedicalRecord> update(MedicalRecord medicalRecordUpdated) {
-        AtomicBoolean recordFound = new AtomicBoolean(false);
+        final var medicalRecordFound = new boolean []{false}  ;
 
         medicalRecordList.stream()
                 .filter(mr -> mr.getFirstName().equalsIgnoreCase(medicalRecordUpdated.getFirstName()) && mr.getLastName().equalsIgnoreCase(medicalRecordUpdated.getLastName()))
                 .forEach(medicalRecord -> {
                     medicalRecord.setMedications(medicalRecordUpdated.getMedications());
                     medicalRecord.setAllergies(medicalRecordUpdated.getAllergies());
-                    recordFound.set(true);
+                    medicalRecordFound[0] = true;
                 });
 
-        if(recordFound.get()) {
+        if(medicalRecordFound[0]) {
             log.info("MedicalRecord of : " + medicalRecordUpdated.getFirstName() + " " + medicalRecordUpdated.getLastName() + " successfully updated");
         } else {
-            log.info("MedicalRecord not found in database and can't be updated");
+            log.warn("MedicalRecord not found in database and can't be updated");
         }
         return medicalRecordList;
     }

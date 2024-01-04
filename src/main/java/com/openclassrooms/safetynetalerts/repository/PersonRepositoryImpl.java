@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @Slf4j
 @Repository
@@ -23,7 +22,7 @@ public class PersonRepositoryImpl implements PersonRepository {
                         .ifPresentOrElse(person -> {
                             personList.remove(person);
                             log.info(firstName + " " + lastName + " successfully deleted");
-                        }, () -> log.info(firstName + " " + lastName + " is not present in database and can't be deleted"));
+                        }, () -> log.warn(firstName + " " + lastName + " is not present in database and can't be deleted"));
     }
 
     @Override
@@ -47,8 +46,7 @@ public class PersonRepositoryImpl implements PersonRepository {
 
     @Override
     public List<Person> update(Person personUpdated) {
-        AtomicBoolean personFound = new AtomicBoolean(false);
-
+        final var personFound = new boolean []{false}  ;
         personList.stream()
                 .filter(p -> p.getFirstName().equalsIgnoreCase(personUpdated.getFirstName()) && p.getLastName().equalsIgnoreCase(personUpdated.getLastName()))
                 .forEach(person -> {
@@ -57,13 +55,13 @@ public class PersonRepositoryImpl implements PersonRepository {
                     person.setZip(personUpdated.getZip());
                     person.setEmail(personUpdated.getEmail());
                     person.setPhone(personUpdated.getPhone());
-                    personFound.set(true);
+                    personFound[0] = true;
                 });
 
-        if(personFound.get()) {
+        if(personFound[0]) {
             log.info("Info of : " + personUpdated.getFirstName() + " " + personUpdated.getLastName() + " successfully updated");
         } else {
-            log.info(personUpdated.getFirstName() + " " + personUpdated.getLastName() + " not found in database and can't be updated");
+            log.warn(personUpdated.getFirstName() + " " + personUpdated.getLastName() + " not found in database and can't be updated");
         }
         return personList;
     }
