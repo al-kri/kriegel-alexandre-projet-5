@@ -36,7 +36,7 @@ class PersonAssemblerTest {
         medicalRecordList.add(MedicalRecord.builder()
                 .firstName("firstNameChild")
                 .lastName("lastNameChild")
-                .birthdate("01/15/2005")
+                .birthdate("06/15/2005")
                 .allergies(List.of("Peanuts", "Fur"))
                 .medications(List.of("Med1", "Med2"))
                 .build());
